@@ -22,7 +22,9 @@ Use mvn install to let Apache Maven install the required jars in your system.
 2. Start the performance test (e.g. via Eclipse or via terminal: java -jar performanceTest.jar) to see input parameters.
 
 Example of use:
+```
 java -jar some/path/performanceTest.jar -f some/where/BEARdayAT.hdt -o ~/results/ -q ~/some/place/BEARday/queries/ -r 3 -p SPOG SPOV
+```
 
 ## License
 
