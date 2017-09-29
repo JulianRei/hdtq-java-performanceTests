@@ -1,21 +1,15 @@
 package tests;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.rdfhdt.hdt.exceptions.NotImplementedException;
 
 import enums.CmdOption;
 import util.CmdParser;
@@ -165,5 +159,19 @@ public abstract class BaseTest {
 			fileName += parts[i];
 		}
 		return fileName;
+	}
+	public void ensureOutputFilesExist() {
+		File folder = new File(outputFolder);
+		folder.mkdirs();
+		String resultColdPath = outputFolder + (outputFolder.endsWith(File.separator) ? "" : File.separator) + RESULT_COLD_FILE_NAME;
+		File resultColdFile = new File(resultColdPath);
+		if(!resultColdFile.exists() || resultColdFile.isDirectory()) { 
+			Writer.writeToFile("{}", resultColdPath, false);
+		}
+		String resultWarmPath = outputFolder + (outputFolder.endsWith(File.separator) ? "" : File.separator) + RESULT_WARM_FILE_NAME; 
+		File resultWarmFile = new File(resultWarmPath);
+		if(!resultWarmFile.exists() || resultWarmFile.isDirectory()) { 
+			Writer.writeToFile("{}", resultWarmPath, false);
+		}
 	}
 }

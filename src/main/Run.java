@@ -24,6 +24,7 @@ public class Run {
 		CmdParser.setArgs(args);
 		BaseTest test = TestFactory.getTest(RDFSystem.getSystemFromExtension(getExtension()));
 		test.parseOptions();
+		test.ensureOutputFilesExist();
 		ArrayList<String> patterns = getPatterns(test);
 		if(patterns.size() == 0) {
 			System.out.println("All patterns already tested. Use -F to force the test.");
